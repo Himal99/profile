@@ -823,6 +823,41 @@
 </html>
 
 <style>
+
+    #scrollTopBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: rgb(213,142,19); /* your color */
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(213,142,19,0.45);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+    z-index: 999;
+}
+
+#scrollTopBtn:hover {
+    background: rgb(185,120,15); /* slightly darker on hover */
+    transform: translateY(-4px);
+}
+#scrollTopBtn::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: rgb(213,142,19);
+    filter: blur(14px);
+    opacity: 0.4;
+    z-index: -1;
+}
     /* CSS Variables & Theming */
 :root {
     --color-primary: #0F172A;
@@ -2341,5 +2376,22 @@ function downloadCV() {
     link.click();
     document.body.removeChild(link);
   }
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("scrollTopBtn");
 
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+
+    btn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
 </script>

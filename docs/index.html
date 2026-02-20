@@ -2203,6 +2203,64 @@ a:hover { color: var(--color-secondary); }
     }
 }
 
+/* ================================
+   MOBILE – DESKTOP LIKE TYPOGRAPHY
+   ================================ */
+@media (max-width: 768px) {
+
+  /* Base font scale */
+  html {
+    font-size: 14px; /* desktop feel */
+  }
+
+  body {
+    overflow-x: hidden;
+    font-size: 0.95rem;
+  }
+
+  /* Headings */
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+  h4 { font-size: 1rem; }
+
+  /* Text */
+  p,
+  li,
+  span {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  /* Buttons & links */
+  button,
+  .btn,
+  a {
+    font-size: 0.9rem;
+  }
+
+  /* Hero specific */
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* Cards */
+  .project-title,
+  .skill-title,
+  .exp-header h3 {
+    font-size: 1.05rem;
+  }
+
+  .project-desc,
+  .skill-list li {
+    font-size: 0.85rem;
+  }
+}
+
 </style>
 
 <script>

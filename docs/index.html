@@ -172,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="landing">
+                    <div class="landing spider-system">
                          <img src="./landing.png" height="100%" width="100%" alt="">
                     </div>
                 </div>
@@ -2279,9 +2279,262 @@ a:hover { color: var(--color-secondary); }
         display: block; /* show landing on mobile */
     }
 }
+
+    /* Entry animation */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Soft breathing zoom */
+@keyframes zoomSoft {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.04);
+    }
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .landing {
+        display: block;
+    }
+}
+
+/* Base hidden state */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.96);
+    filter: blur(6px);
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* When visible */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .landing {
+        display: block;
+    }
+}
+
+/* Container */
+.spider-wave {
+    position: relative;
+    animation: spiderFloat 8s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Image motion */
+.spider-wave img {
+    width: 100%;
+    height: auto;
+    animation: spiderCrawl 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    transform-origin: center;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Floating around a soft center point */
+@keyframes spiderFloat {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    25% {
+        transform: translate3d(6px, -8px, 0);
+    }
+    50% {
+        transform: translate3d(-6px, 6px, 0);
+    }
+    75% {
+        transform: translate3d(8px, 4px, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Spider-wave crawling motion */
+@keyframes spiderCrawl {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translate3d(4px, -3px, 0) rotate(0.6deg) scale(1.01);
+    }
+    40% {
+        transform: translate3d(-5px, 3px, 0) rotate(-0.6deg) scale(1.015);
+    }
+    60% {
+        transform: translate3d(3px, 5px, 0) rotate(0.4deg) scale(1.01);
+    }
+    80% {
+        transform: translate3d(-3px, -4px, 0) rotate(-0.4deg) scale(1.005);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .landing {
+        display: block;
+    }
+}
+
+/* System container */
+.spider-system {
+    position: relative;
+    animation: orbitCrawl 14s linear infinite;
+    will-change: transform;
+}
+
+/* Image animation */
+.spider-system img {
+    width: 100%;
+    height: auto;
+    transform-origin: center;
+    animation:
+        spiderWave 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite,
+        spiderPulse 3.8s ease-in-out infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* 🕸️ Orbital crawling path */
+@keyframes orbitCrawl {
+    0%   { transform: translate3d(0, 0, 0); }
+    25%  { transform: translate3d(10px, -14px, 0); }
+    50%  { transform: translate3d(-14px, 10px, 0); }
+    75%  { transform: translate3d(12px, 8px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+/* 🌊 Spider wave crawl */
+@keyframes spiderWave {
+    0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+    20%  { transform: translate3d(6px,-4px,0) rotate(0.6deg) scale(1.02); }
+    40%  { transform: translate3d(-7px,5px,0) rotate(-0.6deg) scale(1.03); }
+    60%  { transform: translate3d(5px,7px,0) rotate(0.5deg) scale(1.02); }
+    80%  { transform: translate3d(-5px,-6px,0) rotate(-0.5deg) scale(1.015); }
+    100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+/* 🫀 Heartbeat tension pulse */
+@keyframes spiderPulse {
+    0%, 100% { filter: brightness(1); }
+    50%      { filter: brightness(1.05); }
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .landing {
+        display: block;
+    }
+}
+
+/* Container */
+.spider-thread-system {
+    position: relative;
+    width: 100%;
+}
+
+/* Spider silk thread */
+.spider-thread {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    width: 1.2px;
+    height: 120px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0.6),
+        rgba(255,255,255,0.9)
+    );
+    transform-origin: top center;
+    animation: silkWave 4.8s ease-in-out infinite;
+    filter: blur(0.2px);
+}
+
+/* Image stays above thread */
+.spider-thread-system img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+}
+
+/* Silk wave motion */
+@keyframes silkWave {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-50%) rotate(1.2deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-1.5deg);
+    }
+    75% {
+        transform: translateX(-50%) rotate(0.8deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .landing {
+        display: block;
+    }
+}
 </style>
 
 <script>
+
+    let lastScrollY = window.scrollY;
+const spider = document.querySelector('.spider-system');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    const delta = (currentScroll - lastScrollY) * 0.15;
+
+    spider.style.transform = `translate3d(${delta}px, ${-delta}px, 0)`;
+
+    lastScrollY = currentScroll;
+}, { passive: true });
+
+    const revealElements = document.querySelectorAll('.reveal');
+
+const revealOnScroll = () => {
+    revealElements.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
     // Theme Management
 const themeToggle = document.querySelector('.theme-toggle');
 const html = document.documentElement;
